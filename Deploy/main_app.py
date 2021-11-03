@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import pickle
 import sys
-sys.path.append('../code/')
+sys.path.append('../*')
 from team_news import *
 from data import *
 
