@@ -1,4 +1,6 @@
 import numpy as np
+import sys
+sys.path.append('../Deploy')
 import pandas as pd
 from data import main
 
@@ -93,8 +95,8 @@ for model in class_models:
     print(str(model))
     print(classification_report(y_test,ypred))
 
-modelname = "../models/linear_regression.sav"
-pickle.dump(regression_model,open(modelname,'wb'))
+modelname = "../models/svc.pkl"
+pickle.dump(model,open(modelname,'wb'))
 
 playing = {"HomeTeam":[0],"AwayTeam":[1]}
 playing = pd.DataFrame.from_dict(playing)

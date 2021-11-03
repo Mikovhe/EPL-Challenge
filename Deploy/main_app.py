@@ -27,8 +27,8 @@ def main():
 
         if st.button("predict"):
 
-            regression_model = pickle.load(open("../models/linear_regression.sav",'rb'))
-            classification_model = pickle.load(open("../models/svc.sav",'rb'))
+            regression_model = pickle.load(open("../models/linear_regression.pkl",'rb'))
+            classification_model = pickle.load(open("../models/svc.pkl",'rb'))
             play_win =regression_model.predict(fixture)
             result = int(classification_model.predict(play_win))
 
