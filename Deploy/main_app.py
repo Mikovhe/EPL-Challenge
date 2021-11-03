@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import pickle
 import sys
-sys.path.append('../code')
+sys.path.append('../')
 from team_news import *
 from data import team_names
 
@@ -15,9 +15,6 @@ def main():
         st.markdown(html_string,unsafe_allow_html=True)
 
     elif page =="Predictions":
-
-        regression_model = pickle.load(open("../models/linear_regression.sav",'rb'))
-        classification_model = pickle.load(open("../models/svc.sav",'rb'))
         html_string = game_predictions()
         st.markdown(html_string,unsafe_allow_html=True)
 
@@ -31,6 +28,8 @@ def main():
 
         if st.button("predict"):
 
+            regression_model = pickle.load(open("../models/linear_regression.sav",'rb'))
+            classification_model = pickle.load(open("../models/svc.sav",'rb'))
             play_win =regression_model.predict(fixture)
             result = int(classification_model.predict(play_win))
 
