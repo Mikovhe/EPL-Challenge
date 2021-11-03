@@ -4,7 +4,7 @@ import pickle
 import sys
 sys.path.append('../code')
 from team_news import *
-from code import team_names
+from data import team_names
 
 def main():
 
