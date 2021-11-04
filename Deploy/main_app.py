@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 import pickle
 import sys
+sys.path.append('../code')
 from team_news import *
-from data import team_names
 
 def main():
 
@@ -17,7 +17,7 @@ def main():
         html_string = game_predictions()
         st.markdown(html_string,unsafe_allow_html=True)
 
-        teams = team_names()
+        teams = pickle.load(open("../Deploy/team_names.pkl",'rb'))
         teamlst = list(teams.keys())
 
         hometeam = st.selectbox("Home Team",teamlst)
