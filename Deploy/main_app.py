@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import pickle
-import sys
 from team_news import *
 
 def main():
@@ -16,7 +15,8 @@ def main():
         html_string = game_predictions()
         st.markdown(html_string,unsafe_allow_html=True)
 
-        teams = pickle.load(open("../models/team_names.pkl",'rb'))
+        #teams = pickle.load(open("../models/team_names.pkl",'rb'))
+        teams = {"Man U":0,"Liverpool":1}
         teamlst = list(teams.keys())
 
         hometeam = st.selectbox("Home Team",teamlst)
