@@ -75,13 +75,17 @@ def train_model(models,X_train,y_train,X_test,y_test,X,Y):
 
 
 X,regression_model = train_model(models,X1_train,y1_train,X1_test,y1_test,X1,y1)
+
+modelname = "../models/regression_model.pkl"
+#pickle.dump(regression_model,open(modelname,'wb'))
+
 ################ Instantiate classification models ###########################
 LR = LogisticRegression()
 svc = SVC()
 rfc = RandomForestClassifier(n_estimators=500)
 knc = KNeighborsClassifier(n_neighbors=3,weights='distance')
 
-class_models = [svc]
+class_models = [LR,rfc,svc,knc]
 
 Y = list(Y)
 X_train,X_test,y_train,y_test = train_test_split(X,Y,test_size=0.25,random_state=0)
@@ -93,15 +97,17 @@ for model in class_models:
     ypred = model.predict(X_test)
 
     print(str(model))
+    print(classification_report(y_train,model.predict(X_train)))
     print(classification_report(y_test,ypred))
 
-modelname = "../models/svc.pkl"
-pickle.dump(model,open(modelname,'wb'))
 
-playing = {"HomeTeam":[0],"AwayTeam":[1]}
-playing = pd.DataFrame.from_dict(playing)
+modelname = "../models/classification_model.pkl"
+#pickle.dump(model,open(modelname,'wb'))
 
-play_win =regression_model.predict(playing)
+#playing = {"HomeTeam":[0],"AwayTeam":[1]}
+#playing = pd.DataFrame.from_dict(playing)
+
+#play_win =regression_model.predict(playing)
 
 
-print(model.predict(play_win))
+#print(model.predict(play_win))

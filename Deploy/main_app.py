@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import pickle
 import sys
-sys.path.append('../code')
 from team_news import *
 
 def main():
@@ -17,7 +16,7 @@ def main():
         html_string = game_predictions()
         st.markdown(html_string,unsafe_allow_html=True)
 
-        teams = pickle.load(open("../Deploy/team_names.pkl",'rb'))
+        teams = pickle.load(open("../models/team_names.pkl",'rb'))
         teamlst = list(teams.keys())
 
         hometeam = st.selectbox("Home Team",teamlst)
@@ -27,8 +26,8 @@ def main():
 
         if st.button("predict"):
 
-            regression_model = pickle.load(open("../models/linear_regression.pkl",'rb'))
-            classification_model = pickle.load(open("../models/svc.pkl",'rb'))
+            regression_model = pickle.load(open("../models/regression_model.pkl",'rb'))
+            classification_model = pickle.load(open("../models/classification_model.pkl",'rb'))
             play_win =regression_model.predict(fixture)
             result = int(classification_model.predict(play_win))
 
