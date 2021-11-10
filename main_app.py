@@ -3,6 +3,21 @@ import pandas as pd
 import pickle
 from team_news import *
 
+
+
+def team_names():
+    #ingest the data
+    data = pd.read_csv("data/E0.csv")
+    teams = {}
+    for num,team in enumerate(data.HomeTeam.unique()):
+        teams[team]=num
+
+
+    return teams
+
+
+
+
 def main():
 
     page = st.sidebar.selectbox("Choose a page",["Team News","Predictions"])
@@ -15,7 +30,8 @@ def main():
         html_string = game_predictions()
         st.markdown(html_string,unsafe_allow_html=True)
 
-        teams = pickle.load(open("models/team_names.pkl",'rb'))
+        #teams = pickle.load(open("models/team_names.pkl",'rb'))
+        teams = team_names()
         teamlst = list(teams.keys())
 
         hometeam = st.selectbox("Home Team",teamlst)
